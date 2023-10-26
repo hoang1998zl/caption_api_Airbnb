@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model gioi_tinh {
+  id         Int          @id @default(autoincrement())
+  loai       String       @unique
+  nguoi_dung nguoi_dung[]
+}
+
+model role {
+  id         Int          @id @default(autoincrement())
+  loai       String       @unique
+  nguoi_dung nguoi_dung[]
+}
+
+model nguoi_dung {
+  id           Int         @id @default(autoincrement())
+  ho_ten       String
+  email        String      @unique
+  mat_khau     String
+  dien_thoai   String?
+  ngay_sinh    String?
+  gioi_tinh    gioi_tinh?   @relation(fields: [gioi_tinh_id], references: [id])
+  gioi_tinh_id Int?
+  role         role?        @relation(fields: [role_id], references: [id])
+  role_id      Int?
+  anh_dai_dien String?     @db.LongText
+  dat_phong    dat_phong[]
+  binh_luan    binh_luan[]
+}
+
+model phong {
+  id          Int         @id @default(autoincrement())
+  ten_phong   String
+  phong_khach Int
+  phong_ngu   Int
+  giuong      Int
+  phong_tam   Int
+  mo_ta       String?
+  gia_tien    Int
+  may_giat    Boolean
+  ban_la      Boolean
+  tivi        Boolean
+  dieu_hoa    Boolean
+  wifi        Boolean
+  bep         Boolean
+  do_xe       Boolean
+  ho_boi      Boolean
+  ban_ui      Boolean
+  hinh_anh    String?     @db.LongText
+  vi_tri_id   Int
+  vi_tri      vi_tri      @relation(fields: [vi_tri_id], references: [id])
+  dat_phong   dat_phong[]
+  binh_luan   binh_luan[]
+}
+
+model vi_tri {
+  id         Int     @id @default(autoincrement())
+  ten_vi_tri String
+  tinh_thanh String
+  hinh_anh   String?     @db.LongText
+  phong      phong[]
+}
+
+model dat_phong {
+  id             Int        @id @default(autoincrement())
+  ma_phong       Int
+  phong          phong      @relation(fields: [ma_phong], references: [id])
+  ngay_den       String
+  ngay_di        String
+  so_luong_khach Int
+  ma_nguoi_dat   Int
+  nguoi_dung     nguoi_dung @relation(fields: [ma_nguoi_dat], references: [id])
+}
+
+model binh_luan {
+  id                 Int        @id @default(autoincrement())
+  ma_phong           Int
+  phong              phong      @relation(fields: [ma_phong], references: [id])
+  ma_nguoi_binh_luan Int
+  nguoi_dung         nguoi_dung @relation(fields: [ma_nguoi_binh_luan], references: [id])
+  ngay_binh_luan     DateTime   @default(now())
+  noi_dung           String
+  sao_binh_luan      Int
+}

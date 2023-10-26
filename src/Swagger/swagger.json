@@ -1,0 +1,1888 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "CAPTION CUỐI KHÓA"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "securityDefinitions": {},
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/check-connection": {
+      "get": {
+        "tags": [
+          "Check"
+        ],
+        "operationId": "check-connection",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/check-token": {
+      "get": {
+        "tags": [
+          "Check"
+        ],
+        "operationId": "check-token",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "register",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/registerrequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "login",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/loginrequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "getAllUsers",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "getUserById",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "updateUserById",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/updateUserByIdRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "deleteUser",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/users/get-user-by-page": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "getUserByPage",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/users/get-user-by-token": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "getUserByToken",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/users/search/{name}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "getUserByName",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/users/upload-avatar": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "upload-avatar",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "avatar",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "format": "file",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/users/upload-avatar/{id}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "upload-avatar-by-id",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "avatar",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "format": "file",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/room": {
+      "post": {
+        "tags": [
+          "Room"
+        ],
+        "operationId": "createNewRoom",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/createNewRoomRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Room"
+        ],
+        "operationId": "getAllRoom",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/room/{id}": {
+      "get": {
+        "tags": [
+          "Room"
+        ],
+        "operationId": "getRoomById",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Room"
+        ],
+        "operationId": "updateRoom",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/updateRoomRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Room"
+        ],
+        "operationId": "deleteRoom",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/room/uploads-image": {
+      "post": {
+        "tags": [
+          "Room"
+        ],
+        "operationId": "uploadImageRoom",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "format": "file",
+            "description": ""
+          },
+          {
+            "name": "id",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/comments": {
+      "post": {
+        "tags": [
+          "Comments"
+        ],
+        "operationId": "newBinhLuan",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/newBinhLuanRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "operationId": "getAllBinhLuan",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/comments/{id}": {
+      "put": {
+        "tags": [
+          "Comments"
+        ],
+        "operationId": "updateBinhLuan",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/updateBinhLuanRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Comments"
+        ],
+        "operationId": "deleteBinhLuan",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/comments/lay-binh-luan-theo-phong/{id}": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "operationId": "getBinhLuanByRoom",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/booking": {
+      "post": {
+        "tags": [
+          "Booking"
+        ],
+        "operationId": "newBooking",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/newBookingRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "operationId": "getAllBooking",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/booking/{id}": {
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "operationId": "getBookingById",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Booking"
+        ],
+        "operationId": "updateBookingData",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/updateBookingDataRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Booking"
+        ],
+        "operationId": "deleteBooking",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/booking/lay-theo-nguoi-dung/{ma_nguoi_dat}": {
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "operationId": "getBookingByUserId",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ma_nguoi_dat",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/location": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "operationId": "getAllLocation",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "operationId": "addNewLocation",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/addNewLocationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/location/get-location-by-page": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "operationId": "getLocationByPage",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/location/{id}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "operationId": "getViTriById",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Location"
+        ],
+        "operationId": "deleteViTri",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/location/uploads-image": {
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "operationId": "uploadImageLocation",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "format": "file",
+            "description": ""
+          },
+          {
+            "name": "id",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/gender": {
+      "get": {
+        "tags": [
+          "Gender"
+        ],
+        "operationId": "getAllGender",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Gender"
+        ],
+        "operationId": "createGender",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/createGenderRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/gender/{id}": {
+      "delete": {
+        "tags": [
+          "Gender"
+        ],
+        "operationId": "deleteGender",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/role": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "operationId": "getAllRole",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Role"
+        ],
+        "operationId": "createRole",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/createRoleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/role/{id}": {
+      "delete": {
+        "tags": [
+          "Role"
+        ],
+        "operationId": "deleteRole",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "registerrequest": {
+      "title": "registerrequest",
+      "example": {
+        "ho_ten": "hoàng",
+        "email": "hhoaang@gmail.com",
+        "mat_khau": "1234"
+      },
+      "type": "object",
+      "properties": {
+        "ho_ten": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "mat_khau": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ho_ten",
+        "email",
+        "mat_khau"
+      ]
+    },
+    "loginrequest": {
+      "title": "loginrequest",
+      "example": {
+        "email": "hhoaang@gmail.com",
+        "password": "1234"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "updateUserByIdRequest": {
+      "title": "updateUserByIdRequest",
+      "example": {
+        "ho_ten": "hoàng",
+        "email": "hhoaang@gmail.com",
+        "mat_khau": "1234",
+        "dien_thoai": "012345679",
+        "ngay_sinh": "1990-01-22",
+        "gioi_tinh_id": 1,
+        "role_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "ho_ten": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "mat_khau": {
+          "type": "string"
+        },
+        "dien_thoai": {
+          "type": "string"
+        },
+        "ngay_sinh": {
+          "type": "string"
+        },
+        "gioi_tinh_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "role_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "ho_ten",
+        "email",
+        "mat_khau",
+        "dien_thoai",
+        "ngay_sinh",
+        "gioi_tinh_id",
+        "role_id"
+      ]
+    },
+    "createNewRoomRequest": {
+      "title": "createNewRoomRequest",
+      "example": {
+        "ten_phong": "Phòng Deluxe",
+        "phong_khach": 1,
+        "phong_ngu": 1,
+        "giuong": 2,
+        "phong_tam": 1,
+        "mo_ta": "Phòng sang trọng với đầy đủ tiện nghi",
+        "gia_tien": 150,
+        "may_giat": true,
+        "ban_la": true,
+        "tivi": true,
+        "dieu_hoa": true,
+        "wifi": true,
+        "bep": true,
+        "do_xe": true,
+        "ho_boi": true,
+        "ban_ui": true,
+        "hinh_anh": "https://example.com/room.jpg",
+        "vi_tri_id": 2
+      },
+      "type": "object",
+      "properties": {
+        "ten_phong": {
+          "type": "string"
+        },
+        "phong_khach": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "phong_ngu": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "giuong": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "phong_tam": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mo_ta": {
+          "type": "string"
+        },
+        "gia_tien": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "may_giat": {
+          "type": "boolean"
+        },
+        "ban_la": {
+          "type": "boolean"
+        },
+        "tivi": {
+          "type": "boolean"
+        },
+        "dieu_hoa": {
+          "type": "boolean"
+        },
+        "wifi": {
+          "type": "boolean"
+        },
+        "bep": {
+          "type": "boolean"
+        },
+        "do_xe": {
+          "type": "boolean"
+        },
+        "ho_boi": {
+          "type": "boolean"
+        },
+        "ban_ui": {
+          "type": "boolean"
+        },
+        "hinh_anh": {
+          "type": "string"
+        },
+        "vi_tri_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "ten_phong",
+        "phong_khach",
+        "phong_ngu",
+        "giuong",
+        "phong_tam",
+        "mo_ta",
+        "gia_tien",
+        "may_giat",
+        "ban_la",
+        "tivi",
+        "dieu_hoa",
+        "wifi",
+        "bep",
+        "do_xe",
+        "ho_boi",
+        "ban_ui",
+        "hinh_anh",
+        "vi_tri_id"
+      ]
+    },
+    "updateRoomRequest": {
+      "title": "updateRoomRequest",
+      "example": {
+        "ten_phong": "Phòng Deluxe",
+        "phong_khach": 1,
+        "phong_ngu": 1,
+        "giuong": 2,
+        "phong_tam": 2,
+        "mo_ta": "Phòng sang trọng với đầy đủ tiện nghi",
+        "gia_tien": 1500000,
+        "may_giat": true,
+        "ban_la": true,
+        "tivi": true,
+        "dieu_hoa": true,
+        "wifi": true,
+        "bep": true,
+        "do_xe": true,
+        "ho_boi": true,
+        "ban_ui": true,
+        "vi_tri_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "ten_phong": {
+          "type": "string"
+        },
+        "phong_khach": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "phong_ngu": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "giuong": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "phong_tam": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mo_ta": {
+          "type": "string"
+        },
+        "gia_tien": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "may_giat": {
+          "type": "boolean"
+        },
+        "ban_la": {
+          "type": "boolean"
+        },
+        "tivi": {
+          "type": "boolean"
+        },
+        "dieu_hoa": {
+          "type": "boolean"
+        },
+        "wifi": {
+          "type": "boolean"
+        },
+        "bep": {
+          "type": "boolean"
+        },
+        "do_xe": {
+          "type": "boolean"
+        },
+        "ho_boi": {
+          "type": "boolean"
+        },
+        "ban_ui": {
+          "type": "boolean"
+        },
+        "vi_tri_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "ten_phong",
+        "phong_khach",
+        "phong_ngu",
+        "giuong",
+        "phong_tam",
+        "mo_ta",
+        "gia_tien",
+        "may_giat",
+        "ban_la",
+        "tivi",
+        "dieu_hoa",
+        "wifi",
+        "bep",
+        "do_xe",
+        "ho_boi",
+        "ban_ui",
+        "vi_tri_id"
+      ]
+    },
+    "newBinhLuanRequest": {
+      "title": "newBinhLuanRequest",
+      "example": {
+        "ma_phong": 5,
+        "ma_nguoi_binh_luan": 3,
+        "noi_dung": "This is a comment",
+        "sao_binh_luan": 5
+      },
+      "type": "object",
+      "properties": {
+        "ma_phong": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ma_nguoi_binh_luan": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "noi_dung": {
+          "type": "string"
+        },
+        "sao_binh_luan": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "ma_phong",
+        "ma_nguoi_binh_luan",
+        "noi_dung",
+        "sao_binh_luan"
+      ]
+    },
+    "updateBinhLuanRequest": {
+      "title": "updateBinhLuanRequest",
+      "example": {
+        "noi_dung": "This is a commentz",
+        "sao_binh_luan": 5
+      },
+      "type": "object",
+      "properties": {
+        "noi_dung": {
+          "type": "string"
+        },
+        "sao_binh_luan": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "noi_dung",
+        "sao_binh_luan"
+      ]
+    },
+    "newBookingRequest": {
+      "title": "newBookingRequest",
+      "example": {
+        "ma_phong": 5,
+        "ngay_den": "00-00-0000",
+        "ngay_di": "00-00-0000",
+        "so_luong_khach": 4
+      },
+      "type": "object",
+      "properties": {
+        "ma_phong": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ngay_den": {
+          "type": "string"
+        },
+        "ngay_di": {
+          "type": "string"
+        },
+        "so_luong_khach": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "ma_phong",
+        "ngay_den",
+        "ngay_di",
+        "so_luong_khach"
+      ]
+    },
+    "updateBookingDataRequest": {
+      "title": "updateBookingDataRequest",
+      "example": {
+        "ma_phong": 5,
+        "ngay_den": "00-00-0000",
+        "ngay_di": "00-00-0000",
+        "so_luong_khach": 2
+      },
+      "type": "object",
+      "properties": {
+        "ma_phong": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ngay_den": {
+          "type": "string"
+        },
+        "ngay_di": {
+          "type": "string"
+        },
+        "so_luong_khach": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "ma_phong",
+        "ngay_den",
+        "ngay_di",
+        "so_luong_khach"
+      ]
+    },
+    "addNewLocationRequest": {
+      "title": "addNewLocationRequest",
+      "example": {
+        "ten_vi_tri": "Quận 1",
+        "tinh_thanh": "Hồ Chí Minh",
+        "hinh_anh": "https://airbnbnew.cybersoft.edu.vn/images/vt1.jpg"
+      },
+      "type": "object",
+      "properties": {
+        "ten_vi_tri": {
+          "type": "string"
+        },
+        "tinh_thanh": {
+          "type": "string"
+        },
+        "hinh_anh": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ten_vi_tri",
+        "tinh_thanh",
+        "hinh_anh"
+      ]
+    },
+    "createGenderRequest": {
+      "title": "createGenderRequest",
+      "example": {
+        "loai": "@@@"
+      },
+      "type": "object",
+      "properties": {
+        "loai": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "loai"
+      ]
+    },
+    "createRoleRequest": {
+      "title": "createRoleRequest",
+      "example": {
+        "loai": "@@@"
+      },
+      "type": "object",
+      "properties": {
+        "loai": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "loai"
+      ]
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Check"
+    },
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "User"
+    },
+    {
+      "name": "Room"
+    },
+    {
+      "name": "Comments"
+    },
+    {
+      "name": "Booking"
+    },
+    {
+      "name": "Location"
+    },
+    {
+      "name": "Gender"
+    },
+    {
+      "name": "Role"
+    }
+  ]
+}
